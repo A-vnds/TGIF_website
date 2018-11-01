@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+<link rel="stylesheet" type="text/css" href='/Resources/CSS/style.css'>
+    </head>
+    
+
+       
+       
+<body>
+        
+       
+ 
+                
+<div class= 'table-container'>
+
+<div class='party-filter'> 
+    <h5>Filter by Party</h5>
+    
+    <div id="selectParty">
+        <input type="checkbox" value="D" id='checkDem'> Democratic<br>
+        <input type="checkbox" value="R" id='checkRep'> Republican<br>
+        <input type="checkbox" value="I" id='checkInd'> Independent<br>
+    </div>
+ 
+    <!-- Write your comments here    
+ <input type="checkbox" name="All" value="All"> All<br>
+<input type="checkbox" name="Democratic" value="D"> Democratic<br>
+<input type="checkbox" name="Republican" value="R" checked> Republican<br>
+   <input type="checkbox" name="Independent" value="I" checked> Independent<br>
+   
+      <select id="selectParty">
+            <option value="All" selected>All</option>
+            <option value="D">Democratic</option>
+            <option value="R">Republican</option>
+            <option value="I">Independent</option>
+    </select>
+      
+      
+      
+      
+
+    -->
+
+</div>
+
+<div class='state-filter'> 
+    <h5>Filter by State</h5>
+    
+    <select id="selectState" class= 'options-sel'>
+            <option value="All" selected>All</option>
+            <option value="AK">AK</option>
+            <option value="AL">AL</option>
+            <option value="AR">AR</option>
+            <option value="AZ">AZ</option>
+            <option value="CA">CA</option>
+            <option value="CO">CO</option>
+            <option value="CT">CT</option>
+            <option value="DE">DE</option>
+            <option value="FL">FL</option>
+            <option value="GA">GA</option>
+            <option value="HI">HI</option>
+            <option value="IA">IA</option>
+            <option value="ID">ID</option>
+            <option value="IL">IL</option>
+            <option value="IN">IN</option>
+            <option value="KS">KS</option>
+            <option value="KY">KY</option>
+            <option value="LA">LA</option>
+            <option value="MA">MA</option>
+            <option value="MD">MD</option>
+            <option value="ME">ME</option>
+            <option value="MI">MI</option>
+            <option value="MN">MN</option>
+            <option value="MO">MO</option>
+            <option value="MS">MS</option>
+            <option value="MT">MT</option>
+            <option value="NC">NC</option>
+            <option value="ND">ND</option>
+            <option value="NE">NE</option>
+            <option value="NH">NH</option>
+            <option value="NJ">NJ</option>
+            <option value="NM">NM</option>
+            <option value="NV">NV</option>
+            <option value="NY">NY</option>
+            <option value="OH">OH</option>
+            <option value="OK">OK</option>
+            <option value="OR">OR</option>
+            <option value="PA">PA</option>
+            <option value="RI">RI</option>
+            <option value="SC">SC</option>
+            <option value="SD">SD</option>
+            <option value="TN">TN</option>
+            <option value="TX">TX</option>
+            <option value="UT">UT</option>
+            <option value="VA">VA</option>
+            <option value="VT">VT</option>
+            <option value="WA">WA</option>
+            <option value="WI">WI</option>
+            <option value="WV">WV</option>
+            <option value="WY">WY</option>
+        </select>
+
+</div>
+
+
+<table>
+   
+<thead>
+   <tr>
+       <th>Name</th>
+       <th>Party</th>    
+       <th>State</th>    
+       <th>Years In Office</th>    
+       <th>Voted with Party Percentage</th>
+    </tr>
+</thead>
+    
+<tbody id='senate_table'>
+   
+    
+</tbody>
+    
+</table>
+
+</div>
+         
+           
+                     
+<script src='/External/senate113.js'></script> 
+<script src='/Resources/JS/main.js'></script>
+   
+     
+</body>
+                                               
+</html>
