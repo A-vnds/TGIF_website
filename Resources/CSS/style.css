@@ -1,5 +1,276 @@
+/* BASIC SETUP */
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+a {
+    text-decoration: none;
+    text-align: center;
+}
+
+
+html,
+body {
+    background-color: #fff;
+    color: #555;
+    font-family: 'Arial', sans-serif;
+    font-weight: 300;
+    font-size: 20px;
+    text-rendering: optimizeLegibility;
+}
+
+
+.ss-row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+
+
+/* HEADER */
+
+
+.header-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+
+
+.header-logo {
+    height: 120px;
+}
+
+.header-email {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 50px;
+    margin-right: 40px;
+}
+
+.header-email a {
+    text-decoration: none;
+    color: #555;
+}
+
+.header-email a:hover {
+    text-decoration: none;
+    color: #555;
+}
+
+.header-email ion-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin top: 10px;
+    font-size: 120%;
+}
+
+
+.header-email {
+        display: none;
+    }
+
+
+/* NAVIGATION BAR */
+
+
+.navigation-wrapper {
+    background-color: #555;
+    color: #fff;
+
+}
+
+.navigation-wrapper ul {
+    list-style: none;
+}
+
+.navigation-wrapper a {
+    text-decoration: none;
+    text-align: center;
+    color: #fff;
+    display: block;
+    padding: 10px;
+
+}
+
+
+.navigation-wrapper a:hover {
+    background-color: #6a6a6a;
+    text-decoration: none;
+    color: #fff;
+}
+
+
+
+@media only screen and (min-width: 768px) {
+
+    .navigation-wrapper ul {
+        display: flex;
+    }
+
+    .navigation-wrapper li {
+        flex: 1 1 0;
+    }
+    
+    .header-email {
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: 50px;
+    margin-right: 40px;
+}
+
+.header-email a {
+    text-decoration: none;
+    color: #555;
+}
+
+.header-email a:hover {
+    text-decoration: none;
+    color: #555;
+}
+
+.header-email ion-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin top: 10px;
+    font-size: 120%;
+}
+}
+
+
+/* MAIN TEXT */
+
+
+
+
+h2 {
+    font-weight: 100;
+    margin-left: 40px;
+    color: #555;
+}
+
+
+.main-info {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
+.main-info p {
+    color: #383838;
+    margin-left: 20px;
+    margin-top: 10px;
+    line-height: 1.5em;
+    max-width: 750px;
+    text-align: justify;
+}
+
+
+.contact-form {
+    height: 70vh;
+}
+
+/* TABLE FILTERS */
+
+
+.table-filters {
+    font-size: 80%;
+    background-color: #555;
+    color: #fff;
+    padding: 2px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+
+/* TABLE */
+
+table {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    font-size: 80%;
+    table-layout: auto;
+    width: 100%;
+    text-align: center;
+}
+
+
+th {
+    padding: 5px;
+    background-color: #555;
+    color: #fff;
+    font-weight: 200;
+}
+
+
+table a {
+    color: #555;
+    text-decoration: none;
+}
+
+
 tr,
 td {
-    border: 1px solid black;
-    padding: 10px;
+    border: 1px solid #555;
+    padding: 3px;
 }
+
+
+
+
+/* FOOTER */
+
+footer {
+    width: 100%;
+}
+
+.footer {
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 70%;
+    height: 100px;
+}
+
+.footer p {
+    margin-bottom: 3px;
+}
+
+.footer img {
+    height: 50px;
+}
+
+
+
+/* DROPDOWN NAV BUTTON */
+
+.sm-menu a {
+    background-color: #555;
+}
+
+.dropdown-menu {
+    background-color: #555;
+}
+   
+.dropdown {
+    background-color: #555;
+}
+
+.dmenu {
+    background-color: #555;
+}
+
+<div data-brackets-id="5315" class="dropdown-menu sm-menu show" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 50px, 0px); top: 0px; left: 0px; will-change: transform;">
+              <a data-brackets-id="5316" class="dropdown-item" href="senate-data.html">US Senate</a>
+              <a data-brackets-id="5317" class="dropdown-item" href="house-data.html">US House of Representatives</a>
+            </div>
