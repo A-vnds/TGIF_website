@@ -251,26 +251,23 @@ footer {
 }
 
 
+/* NAV BAR DROPDOWN */
 
-/* DROPDOWN NAV BUTTON */
-
-.sm-menu a {
-    background-color: #555;
-}
-
-.dropdown-menu {
-    background-color: #555;
-}
-   
-.dropdown {
-    background-color: #555;
-}
-
+.sm-menu a,
+.sm-menu a:hover, 
+.dropdown-menu,
+.dropdown,
 .dmenu {
     background-color: #555;
 }
 
-<div data-brackets-id="5315" class="dropdown-menu sm-menu show" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 50px, 0px); top: 0px; left: 0px; will-change: transform;">
-              <a data-brackets-id="5316" class="dropdown-item" href="senate-data.html">US Senate</a>
-              <a data-brackets-id="5317" class="dropdown-item" href="house-data.html">US House of Representatives</a>
-            </div>
+
+/* ACCORDION */
+
+#myButton1,
+#myButton2,
+#myButton3 {
+    background-color: #555;
+}
+
+
