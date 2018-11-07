@@ -271,3 +271,41 @@ footer {
 }
 
 
+/* ATTENDANCE PAGE */
+
+.text-table {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.width60 {
+    flex: 2 1 0;
+    min-width: 500px;
+} 
+
+.width40 {
+    margin-left: 40px;
+    flex: 1 1 0;
+
+
+}
+
+
+.two-tables-row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+
+.width50 {
+    width: 50%;
+    margin-left: 40px;
+    flex: 1 1 0
+
+}
+
+
+
+
+

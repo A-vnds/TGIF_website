@@ -1,17 +1,5 @@
 const members = data.results[0].members;
 
-
-
-var statistics = {
-    'Number of Democrats': totalNumber('D'),
-    'Number of Republicans': totalNumber('R'),
-    'Number of Independents': totalNumber('I'),
-    'PercentageVotedParty': '0',
-
-}
-
-
-
 // Number of Candidates Function
 
 
@@ -121,3 +109,11 @@ find10Percent(mostLoyal, "missed_votes_pct", "asc");
 
 
 
+var statistics = {
+    'Number of Democrats': totalNumber('D'),
+    'Number of Republicans': totalNumber('R'),
+    'Number of Independents': totalNumber('I'),
+    'Democratic Average Perc. Voted w. Party': totalVotedPerc('D')/demoLength,
+    'Republican Average Perc. Voted w. Party': totalVotedPerc('R')/repuLength,
+    'Independent Average Perc. Voted w. Party': totalVotedPerc('I')/indeLength,
+}
