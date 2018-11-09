@@ -2,7 +2,6 @@ const members = data.results[0].members;
 
 // Number of Candidates Function
 
-
 function totalNumber(par) {
     let arr = [];
     let total = 0;
@@ -18,10 +17,6 @@ let demoLength = totalNumber('D');
 let repuLength = totalNumber('R');
 let indeLength = totalNumber('I');
 let totalNumberOfCand = demoLength + repuLength + indeLength;
-
-//console.log(demoLength);
-//console.log(repuLength);
-//console.log(indeLength);
 
 
 
@@ -46,18 +41,16 @@ let repuMissedVotP = averMissedVotesPerc('R');
 let indeMissedVotP = averMissedVotesPerc('I');
 let averMissedVotP = ((demoMissedVotP + repuMissedVotP + indeMissedVotP)/3);
 
-//console.log(demoMissedVotP);
-//console.log(repuMissedVotP);
-//console.log(indeMissedVotP);
-//console.log(averMissedVotP);
+// Convert any falsey values to 0; false, NaN, undefined, 0, " ", null.
 
-
-
+demoMissedVotP = demoMissedVotP || 0;
+repuMissedVotP = repuMissedVotP || 0;
+indeMissedVotP = indeMissedVotP || 0;
+averMissedVotP = averMissedVotP || 0;
 
 
 
 // LOYALTY: Total percentage voted for each party
-
 
 function totalVotedPerc(par) {
     let total = 0;
@@ -79,8 +72,12 @@ let averPVRepu = repuVotPerc / repuLength;
 let averPVInde = indeVotPerc / indeLength;
 let averAverPVP = ((averPVDemo+averPVRepu+averPVInde)/3);
 
+// Convert any falsey values to 0; false, NaN, undefined, 0, " ", null.
 
-
+averPVDemo = averPVDemo || 0;
+averPVRepu = averPVRepu || 0;
+averPVInde = averPVInde || 0;
+averAverPVP = averAverPVP || 0;
 
 
 
@@ -91,11 +88,9 @@ let leastEngaged = [...members].sort(function (a, b) {
     return parseFloat(b.missed_votes_pct) - parseFloat(a.missed_votes_pct);
 });
 
-
 let mostEngaged = [...members].sort(function (a, b) {
     return parseFloat(a.missed_votes_pct) - parseFloat(b.missed_votes_pct);
 });
-
 
 
 // Least Loyal: The ones with lowest 'Voted with Party' Percentage
@@ -106,7 +101,6 @@ let leastLoyal = [...members].sort(function (a, b) {
 });
 
 
-
 let mostLoyal = [...members].sort(function (a, b) {
     return parseFloat(b.votes_with_party_pct) - parseFloat(a.votes_with_party_pct);
 });
@@ -114,7 +108,6 @@ let mostLoyal = [...members].sort(function (a, b) {
 
 
 //function to calculate the 10% with three arguments: one array, one value and the order 
-
 
 function find10Percent(arr, value, order) {
     let newArray = [];
@@ -137,7 +130,6 @@ function find10Percent(arr, value, order) {
 
 //Create the arrays for each of the four tables
 
-
 let leastEngagedArray = find10Percent(leastEngaged, "missed_votes_pct", "des");
 let mostEngagedArray = find10Percent(mostEngaged, "missed_votes_pct", "asc");
 
@@ -146,10 +138,7 @@ let mostLoyalArray = find10Percent(mostLoyal, "votes_with_party_pct", "des");
 
 
 
-
 // Create Main Table Function
-
-
 
 function createTable(data, tableId, keyOne, keyTwo) {
     let html = "<table border='1|1'>";
@@ -158,14 +147,14 @@ function createTable(data, tableId, keyOne, keyTwo) {
         if (data[i].middle_name != null) {
             html += "<tr>";
             html += "<td>" + (data[i].first_name + ' ' + data[i].middle_name + ' ' + data[i].last_name).link(data[i].url) + "</td>";
-            html += "<td>" + data[i][keyOne] + "</td>";
-            html += "<td>" + data[i][keyTwo] + "</td>";
+            html += "<td>" + data[i][keyOne] + '%'+ "</td>";
+            html += "<td>" + data[i][keyTwo] + '%'+ "</td>";
             html += "</tr>";
         } else
             html += "<tr>";
         html += "<td>" + (data[i].first_name + ' ' + data[i].last_name).link(data[i].url) + "</td>";
-        html += "<td>" + data[i][keyOne] + "</td>";
-        html += "<td>" + data[i][keyTwo] + "</td>";
+        html += "<td>" + data[i][keyOne] + '%' + "</td>";
+        html += "<td>" + data[i][keyTwo] + '%' + "</td>";
         html += "</tr>";
     }
 
@@ -178,6 +167,8 @@ function createTable(data, tableId, keyOne, keyTwo) {
 
 
 
+// Call Functions according to URL path so you don't have undefined iDs
+
 if (window.location.pathname == "/Resources/HTML/senate-loyalty.html" || window.location.pathname == "/Resources/HTML/house-loyalty.html") {
     createTable(leastLoyalArray, "senate_least_loyal", "total_votes", "votes_with_party_pct");
     createTable(mostLoyalArray, "senate_most_loyal", "total_votes", "votes_with_party_pct");
@@ -189,9 +180,7 @@ if (window.location.pathname == "/Resources/HTML/senate-attedance.html" || windo
 }
 
 
-
 // Small Table and Rest of the Statistics
-
 
 var statistics = {
     'Number of Republicans': totalNumber('R'),
@@ -210,41 +199,34 @@ var statistics = {
     'Average Democratic Voted wParty Perc': averPVRepu,
     'Average Independent Voted wParty Perc': averPVInde,
     'Average of averages Voted wParty Perc': averAverPVP,
-    
-
 }
 
 
-//Attendance Table
+//Independent to URL 
 
 document.getElementById('total_Republicans').innerHTML = statistics["Number of Republicans"];
 document.getElementById('total_Democrats').innerHTML = statistics["Number of Democrats"];
 document.getElementById('total_Indepedents').innerHTML = statistics["Number of Independents"];
 document.getElementById('total_number_candidates').innerHTML = statistics["Total Senate Number"];
 
+//Attendance Table
 
-if (window.location.pathname == "/Resources/HTML/senate-attedance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html") {
+if ((window.location.pathname == "/Resources/HTML/senate-attedance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html")) {
     document.getElementById('aver_rep_missedper').innerHTML = Math.floor(statistics['Average Republican Missed Votes Perc']) + "%";
     document.getElementById('aver_dem_missedper').innerHTML = Math.floor(statistics["Average Democratic Missed Votes Perc"]) + "%";
     document.getElementById('aver_ind_missedper').innerHTML = Math.floor(statistics["Average Inde Missed Votes Perc"]) + "%";
     document.getElementById('aver_of_aver_missedper').innerHTML = Math.floor(statistics["Aver of Aver Missed Votes Perc"]) + "%";
-}
-
+} 
 
 
 //Loyalty Table
 
-if (window.location.pathname == "/Resources/HTML/senate-loyalty.html" || window.location.pathname == "/Resources/HTML/house-loyalty.html") {
+if ((window.location.pathname == "/Resources/HTML/senate-loyalty.html" || window.location.pathname == "/Resources/HTML/house-loyalty.html")) {
     document.getElementById('aver_rep_votWParty').innerHTML = Math.floor(statistics["Average Republican Voted wParty Perc"])+ "%";
     document.getElementById('aver_dem_votWParty').innerHTML = Math.floor(statistics["Average Democratic Voted wParty Perc"])+ "%";
     document.getElementById('aver_ind_votWParty').innerHTML = Math.floor(statistics["Average Independent Voted wParty Perc"])+ "%";
-    document.getElementById('aver_of_aver_votWParty').innerHTML = Math.floor(statistics["Average of averages Voted wParty Perc"]) + "%";
-    
+    document.getElementById('aver_of_aver_votWParty').innerHTML = Math.floor(statistics["Average of averages Voted wParty Perc"]) + "%";    
 }
 
 
 
-
-
-
- 
