@@ -1,4 +1,9 @@
-const members = data.results[0].members
+//const members = data.results[0].members
+//console.log(data);
+
+const senateURL = "https://api.propublica.org/congress/v1/113/house/members.json";
+const houseURL = "https://api.propublica.org/congress/v1/113/senate/members.json";
+
 const partySelector = document.getElementById("selectParty");
 const stateSelector = document.getElementById('selectState');
 
@@ -8,10 +13,38 @@ const checkDem = document.getElementById('checkDem');
 const checkRep = document.getElementById('checkRep');
 const checkInd = document.getElementById('checkInd');
 
-createTable(members);
 
-partySelector.addEventListener("change", zeroMatches);
-stateSelector.addEventListener("change", zeroMatches);
+function getDATA(url) {
+    fetch(url, {
+            method: "GET",
+            headers: {
+                'X-API-Key': "9CWN1qilUH6MJzIghGk8igvIm0rNFPnIIs3wzi4Y",
+            }
+        })
+        .then(response => response.json()) // parses response to JSON
+        .then(json => {
+            data = json;
+            members = data.results[0].members;
+            createTable(members);
+            partySelector.addEventListener("change", zeroMatches);
+            stateSelector.addEventListener("change", zeroMatches);
+        })
+        .catch(error => error)
+}
+
+
+
+
+if (window.location.pathname == "/Resources/HTML/senate-data.html") {   
+    getDATA(senateURL);
+};
+
+
+if (window.location.pathname == "/Resources/HTML/house-data.html") {   
+    getDATA(houseURL);
+};
+
+
 
 
 
@@ -76,7 +109,7 @@ function caseReset() {
     } else {
         filterArray();
     }
-    }
+}
 
 // General Reset Function of the Table
 
@@ -92,11 +125,14 @@ function resetTableArr() {
 // Message Function for Zero Matches, the main function called on the Event Listener at the Top
 
 function zeroMatches() {
-    
+
     filterArray();
-    
+
     if (!tableResults.hasChildNodes()) {
         alert("There are no matches for this values, the table will be reset");
         resetTableArr();
-    }}
-    
+    }
+}
+
+
+

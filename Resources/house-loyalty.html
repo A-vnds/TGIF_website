@@ -71,41 +71,46 @@
 
     <div class='ss-row main-info text-table'>
         <div class='width60'>
-            <h2>Attendance</h2>
-            <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
+            <h2>House of Representatives: Loyalty</h2>
+            <p>Party identification refers to the political party with which an individual identifies. Party identification is affiliation with a political party. Party identification is typically determined by the political party that an individual most commonly supports (by voting or other means).</p>
 
-            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+            <p>Some researchers view party identification as "a form of social identity",in the same way that a person identifies with a religious or ethnic group. This identity develops early in a person's life mainly through family and social influences. This description would make party identification a stable perspective, which develops as a consequence of personal, family, social, and environmental factors. Other researchers consider party identification to be more flexible and more of a conscious choice. They see it as a position and a choice based on the continued assessment of the political, economic, and social environment. Party identification can increase or even shift by motivating events or conditions in the country.</p>
         </div>
+
+
+
+
+
         <div class='width40'>
-            <h3>Senate at a glance</h3>
+            <h3>House at a glance</h3>
             <table>
                 <thead>
                     <tr>
                         <th>Party</th>
                         <th>Number of Reps</th>
-                        <th>Missed Votes %</th>
+                        <th>Average % Party Votes</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                         <td>Republican</td>
                         <td id='total_Republicans'>--</td>
-                        <td id='aver_rep_missedper'>--</td>
+                        <td id='aver_rep_votWParty'>--</td>
                     </tr>
                     <tr>
                         <td>Democratic</td>
                         <td id='total_Democrats'>--</td>
-                        <td id='aver_dem_missedper'>--</td>
+                        <td id='aver_dem_votWParty'>--</td>
                     </tr>
                     <tr>
                         <td>Independent</td>
                         <td id='total_Indepedents'>--</td>
-                        <td id='aver_ind_missedper'>--</td>
+                        <td id='aver_ind_votWParty'>--</td>
                     </tr>
                     <tr>
                         <td>Total</td>
                         <td id='total_number_candidates'>--</td>
-                        <td id='aver_of_aver_missedper'>--</td>
+                        <td id='aver_of_aver_votWParty'>--</td>
                     </tr>
 
                 </tbody>
@@ -128,35 +133,62 @@
     <div class='ss-row table-container two-tables-row'>
 
         <div class='width50'>
-            <h4>Least Engaged (Bottom 10% Attendance)</h4>
+            <h4>Least Loyal (Bottom 10% of Party)</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed Votes</th>
+                        <th>Number Party Votes</th>
+                        <th>% Party Votes</th>
                     </tr>
                 </thead>
-
-                <tbody id='senate_least_engaged'>
-
+                <tbody id='senate_least_loyal'>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
+                    <tr>
+                        <td>--</td>
+                        <td>--</td>
+                        <td>--</td>
+                    </tr>
                 </tbody>
-
             </table>
         </div>
 
 
         <div class='width50'>
-            <h4>Most Engaged (Top 10% Attendance)</h4>
+            <h4>Most Loyal (Top 10% of Party)</h4>
             <table>
                 <thead>
                     <tr>
                         <th>Name</th>
-                        <th>Number of Missed Votes</th>
-                        <th>% Missed Votes</th>
+                        <th>Number Party Votes</th>
+                        <th>% Party Votes</th>
                     </tr>
                 </thead>
-                <tbody id='senate_most_engaged'>
+                <tbody id='senate_most_loyal'>
                     <tr>
                         <td>--</td>
                         <td>--</td>
@@ -210,11 +242,11 @@
 
 
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src='/External/house113.js'></script>
+    <script src='/Resources/JS/statistics.js'></script>
     <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
 
-    <script src='/Resources/JS/statistics.js'></script>
+
 </body>
 
 </html>
