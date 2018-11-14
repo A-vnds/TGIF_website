@@ -146,9 +146,40 @@
 </div>                        
                                            
 
+<!--
 <div class='row' id="loader">                                 
 <div class="lds-ripple"><div></div><div></div></div>
 </div>
+-->
+
+
+<div class='ss-row table-container'>
+   <div id="vue-app">
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Party</th>
+                <th>State</th>
+                <th>Years In Office</th>
+                <th>Voted with Party %</th>
+            </tr>
+        </thead>
+        <tbody id='senate_table'>
+            <tr v-for="value in senators">
+                <td>{{value.first_name}} {{value.middle_name}} {{value.last_name}}</td>
+                <td>{{value.party}}</td>
+                <td>{{value.state}}</td>
+                <td>{{value.seniority}}</td>
+                <td>{{value.votes_with_party_pct}} % </td> 
+            </tr>
+        </tbody>
+    </table> 
+   </div> 
+</div>
+
+
+
 
 
 
@@ -188,13 +219,11 @@
     
     
 </footer> 
-       
-<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>-->
-<!--<script src='/External/senate113.js'></script> -->
+<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 <script src='/Resources/JS/data-main.js'></script>
-<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
 
-   
+
 </body>
                                                
 </html>
