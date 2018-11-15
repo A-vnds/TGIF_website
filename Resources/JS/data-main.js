@@ -1,17 +1,17 @@
 //const members = data.results[0].members
 //console.log(data);
 
-const senateURL = "https://api.propublica.org/congress/v1/113/senate/members.json";
-const houseURL = "https://api.propublica.org/congress/v1/113/house/members.json";
+//const senateURL = "https://api.propublica.org/congress/v1/113/senate/members.json";
+//const houseURL = "https://api.propublica.org/congress/v1/113/house/members.json";
 
-const partySelector = document.getElementById("selectParty");
-const stateSelector = document.getElementById('selectState');
+//const partySelector = document.getElementById("selectParty");
+//const stateSelector = document.getElementById('selectState');
 
-let tableResults = document.getElementById('senate_table');
+//let tableResults = document.getElementById('senate_table');
 
-const checkDem = document.getElementById('checkDem');
-const checkRep = document.getElementById('checkRep');
-const checkInd = document.getElementById('checkInd');
+//const checkDem = document.getElementById('checkDem');
+//const checkRep = document.getElementById('checkRep');
+//const checkInd = document.getElementById('checkInd');
 
 
 //function getDATA(url) {
@@ -141,25 +141,30 @@ var app = new Vue({
     data: {
         senators: [],
         members: [],
-        filteredArray: [],
         senateURL: "https://api.propublica.org/congress/v1/113/senate/members.json",
         houseURL: "https://api.propublica.org/congress/v1/113/house/members.json",
-        partySelector: document.getElementById("selectParty"),
-        stateSelector: document.getElementById('selectState'),
-        tableResults: document.getElementById('senate_table'),
-        checkDem: document.getElementById('checkDem'),
-        checkRep: document.getElementById('checkRep'),
-        checkInd: document.getElementById('checkInd'),
+        states: [],
+
+
+        //        partySelector: document.getElementById("selectParty"),
+        //        stateSelector: document.getElementById("selectState"),
+        //        tableResults: document.getElementById('senate_table'),
+        //        checkDem: document.getElementById('checkDem'),
+        //        checkRep: document.getElementById('checkRep'),
+        //        checkInd: document.getElementById('checkInd'),
+
     },
     created: function () {
         if (window.location.pathname == "/Resources/HTML/senate-data.html") {
             this.getData(this.senateURL);
         };
-        if (window.location.pathname == "/Resources/HTML/house-data.html") {
+        if (window.location.pathname == "/Resources/house-data.html") {
             this.getData(this.houseURL);
         };
     },
+
     methods: {
+
         getData: function (url) {
             fetch(url, {
                     method: "GET",
@@ -170,41 +175,86 @@ var app = new Vue({
                 .then(response => response.json()) // parses response to JSON
                 .then(json => {
                     data = json;
-                    app.members = data.results[0].members;
-                    app.senators = data.results[0].members;
-                    app.partySelector.addEventListener("change", app.zeroMatches);
-                    app.stateSelector.addEventListener("change", app.zeroMatches);
+                    this.members = data.results[0].members;
+                    this.senators = data.results[0].members;
+                    this.removeDuplicates();
+                    //                        partySelector =  document.getElementById("selectParty");
+                    //                        stateSelector =  document.getElementById("selectState");
+                    //                        app.partySelector.addEventListener("change", this.zeroMatches);
+                    //                        app.stateSelector.addEventListener("change", this.zeroMatches);
                 })
                 .catch(error => error)
         },
+
+
+
+        removeDuplicates: function () {
+            let stateListArray = [];
+
+            for (let i = 0; i < this.members.length; i++) {
+                if (stateListArray.indexOf(this.members[i].state) == -1) {
+                    stateListArray.push(this.members[i].state);
+                }
+            }
+            this.states = stateListArray;
+        },
+
+
         zeroMatches: function () {
-
-
             this.filterArray();
+
             if (this.senators.length == 0) {
                 alert("There are no matches for this values, the table will be reset");
                 this.resetTableArr();
             }
         },
+
         resetTableArr: function () {
-            this.stateSelector.value = 'All'
-            this.checkDem.checked = true;
-            this.checkRep.checked = true;
-            this.checkInd.checked = true;
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+            stateSelector.value = 'All'
+            checkDem.checked = true;
+            checkRep.checked = true;
+            checkInd.checked = true;
             this.filterArray();
         },
+
         caseReset: function () {
-            if ((this.stateSelector.value == 'All' && (this.checkDem.checked == false) && (this.checkRep.checked == false) && (this.checkInd.checked == false))) {
-                this.resetTableArr();
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+
+            if ((stateSelector.value == 'All' && (checkDem.checked == false) && (checkRep.checked == false) && (checkInd.checked == false))) {
+                this.resetTableArr()
+                console.log('hi');
             } else {
                 this.filterArray();
             }
+            console.log('hi');
+
         },
+
+
         filterArray: function () {
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+
             let filteredArray = [];
 
-            for (let i = 0; i < this.members.length; i++) {
 
+            for (let i = 0; i < this.members.length; i++) {
+            
                 if (this.members[i].state == stateSelector.value || stateSelector.value == 'All') {
 
                     if ((this.members[i].party == 'D') && (checkDem.checked == true)) {
@@ -216,10 +266,7 @@ var app = new Vue({
                     }
                 }
             }
-
             this.senators = filteredArray;
-        }
-
-
-    },
+        },
+    }
 });
