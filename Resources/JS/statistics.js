@@ -7,7 +7,7 @@ const houseURL = "https://api.propublica.org/congress/v1/113/senate/members.json
 
 
 
-if ((window.location.pathname == "/Resources/HTML/senate-attedance.html") || (window.location.pathname == "/Resources/HTML/senate-loyalty.html")) {
+if ((window.location.pathname == "/Resources/HTML/senate-attendance.html") || (window.location.pathname == "/Resources/HTML/senate-loyalty.html")) {
     getDATA(senateURL);
 };
 
@@ -114,7 +114,7 @@ function webLogic() {
         createTable(mostLoyalArray, "senate_most_loyal", "total_votes", "votes_with_party_pct");
     }
 
-    if (window.location.pathname == "/Resources/HTML/senate-attedance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html") {
+    if (window.location.pathname == "/Resources/HTML/senate-attendance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html") {
 
         createTable(leastEngagedArray, "senate_least_engaged", 'missed_votes', 'missed_votes_pct');
         createTable(mostEngagedArray, "senate_most_engaged", 'missed_votes', 'missed_votes_pct');
@@ -148,7 +148,7 @@ function webLogic() {
 
     //Attendance Table
 
-    if ((window.location.pathname == "/Resources/HTML/senate-attedance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html")) {
+    if ((window.location.pathname == "/Resources/HTML/senate-attendance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html")) {
         document.getElementById('aver_rep_missedper').innerHTML = Math.floor(statistics['Average Republican Missed Votes Perc']) + "%";
         document.getElementById('aver_dem_missedper').innerHTML = Math.floor(statistics["Average Democratic Missed Votes Perc"]) + "%";
         document.getElementById('aver_ind_missedper').innerHTML = Math.floor(statistics["Average Inde Missed Votes Perc"]) + "%";

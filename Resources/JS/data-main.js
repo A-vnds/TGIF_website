@@ -158,7 +158,7 @@ var app = new Vue({
         if (window.location.pathname == "/Resources/HTML/senate-data.html") {
             this.getData(this.senateURL);
         };
-        if (window.location.pathname == "/Resources/house-data.html") {
+        if (window.location.pathname == "/Resources/HTML/house-data.html") {
             this.getData(this.houseURL);
         };
     },
