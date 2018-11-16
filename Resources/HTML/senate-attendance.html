@@ -2,7 +2,6 @@
 <html lang="en">
 
 <head>
-
     <link rel="stylesheet" type="text/css" href='/Resources/CSS/style.css'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -16,19 +15,13 @@
 
 
     <div class="ss-row header">
-
         <div class="header-wrapper">
-
             <div><img src="/Resources/Images/header-logo.png" class='header-logo'>
             </div>
-
             <div class='header-email'>
-
                 <ion-icon name="mail"></ion-icon>
                 <a href="mailto:info@tgif.net" target="_top">info@tgif.net</a>
-
             </div>
-
         </div>
     </div>
 
@@ -68,14 +61,15 @@
     </nav>
 
 
-
+    <div id="vue-app"> 
     <div class='ss-row main-info text-table'>
         <div class='width60'>
-            <h2>Attendance</h2>
+            <h2>Attendance: Senate</h2>
             <p>The Constitution specifies that a majority of members constitutes a quorum to do business in each house. Representatives and senators rarely force the presence of a quorum by demanding quorum calls; thus, in most cases, debates continue even if a majority is not present.</p>
 
-            <p>The Senate uses roll-call votes; a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
+            <p>The Senate uses roll-call votes: a clerk calls out the names of all the senators, each senator stating "aye" or "no" when his or her name is announced. The House reserves roll-call votes for the most formal matters, as a roll-call of all 435 representatives takes quite some time; normally, members vote by electronic device. In the case of a tie, the motion in question fails. In the Senate, the Vice President may (if present) cast the tiebreaking vote.</p>
         </div>
+        
         <div class='width40'>
             <h3>Senate at a glance</h3>
             <table>
@@ -89,38 +83,32 @@
                 <tbody>
                     <tr>
                         <td>Republican</td>
-                        <td id='total_Republicans'>--</td>
-                        <td id='aver_rep_missedper'>--</td>
+                        <td id='total_Republicans'>{{statistics['Number_of_Republicans']}}</td>
+                        <td id='aver_rep_missedper'>{{statistics["Average_Republican_Missed_Votes_Perc"]}} %</td>
                     </tr>
                     <tr>
                         <td>Democratic</td>
-                        <td id='total_Democrats'>--</td>
-                        <td id='aver_dem_missedper'>--</td>
+                        <td id='total_Democrats'>{{statistics["Number_of_Democrats"]}}</td>
+                        <td id='aver_dem_missedper'>{{statistics["Average_Democratic_Missed_Votes_Perc"]}} %</td>
                     </tr>
                     <tr>
                         <td>Independent</td>
-                        <td id='total_Indepedents'>--</td>
-                        <td id='aver_ind_missedper'>--</td>
+                        <td id='total_Indepedents'>{{statistics["Number_of_Independents"]}}</td>
+                        <td id='aver_ind_missedper'>{{statistics["Average_Inde_Missed_Votes_Perc"]}} %</td>
                     </tr>
                     <tr>
                         <td>Total</td>
-                        <td id='total_number_candidates'>--</td>
-                        <td id='aver_of_aver_missedper'>--</td>
+                        <td id='total_number_candidates'>{{statistics["Total_Senate_Number"]}}</td>
+                        <td id='aver_of_aver_missedper'>{{statistics["Aver_of_Aver_Missed_Votes_Perc"]}} %</td>
                     </tr>
 
                 </tbody>
             </table>
         </div>
-
-
-
     </div>
 
 
-    <div class='ss-row table-filters'>
-
-
-
+    <div class='ss-row separation-line'>
     </div>
 
 
@@ -137,12 +125,14 @@
                         <th>% Missed Votes</th>
                     </tr>
                 </thead>
-
                 <tbody id='senate_least_engaged'>
-
+                    <tr v-for="senator in leastEngagedArray">
+                        <td>{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</td>
+                        <td>{{senator.missed_votes}}</td>
+                        <td>{{senator.missed_votes_pct}} % </td> 
+                    </tr>
                 </tbody>
-
-            </table>
+            </table>  
         </div>
 
 
@@ -157,49 +147,20 @@
                     </tr>
                 </thead>
                 <tbody id='senate_most_engaged'>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
-                    </tr>
-                    <tr>
-                        <td>--</td>
-                        <td>--</td>
-                        <td>--</td>
+                   <tr v-for="senator in mostEngagedArray">
+                        <td>{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</td>
+                        <td>{{senator.missed_votes}}</td>
+                        <td>{{senator.missed_votes_pct}} % </td> 
                     </tr>
                 </tbody>
             </table>
-
         </div>
     </div>
 
 
-    </div>
+
+</div>
+
 
 
     <footer>
@@ -210,11 +171,10 @@
 
 
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
     <script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
 
-    <script src='/Resources/JS/statistics.js'></script>
+    <script src='/Resources/JS/stats2.js'></script>
 </body>
 
 </html>

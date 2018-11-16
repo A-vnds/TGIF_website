@@ -113,7 +113,7 @@
         <tbody id='senate_table'>
             <tr v-for="value in senators">
                 <td>{{value.first_name}} {{value.middle_name}} {{value.last_name}}</td>
-                <td>{{value.party}}</td>
+                <td>{{value.missed_votes_pct}} %</td>
                 <td>{{value.state}}</td>
                 <td>{{value.seniority}}</td>
                 <td>{{value.votes_with_party_pct}} % </td> 

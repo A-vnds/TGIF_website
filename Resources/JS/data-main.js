@@ -178,10 +178,6 @@ var app = new Vue({
                     this.members = data.results[0].members;
                     this.senators = data.results[0].members;
                     this.removeDuplicates();
-                    //                        partySelector =  document.getElementById("selectParty");
-                    //                        stateSelector =  document.getElementById("selectState");
-                    //                        app.partySelector.addEventListener("change", this.zeroMatches);
-                    //                        app.stateSelector.addEventListener("change", this.zeroMatches);
                 })
                 .catch(error => error)
         },
