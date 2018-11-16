@@ -420,50 +420,6 @@ var app = new Vue({
             
             app.statistics = stats;
 
-
-    
-            
-             // Call Functions according to URL path so you don't have undefined iDs
-
-//            if (window.location.pathname == "/Resources/HTML/senate-loyalty.html" || window.location.pathname == "/Resources/HTML/house-loyalty.html") {
-//                this.createTable(leastLoyalArray, "senate_least_loyal", "total_votes", "votes_with_party_pct");
-//                this.createTable(mostLoyalArray, "senate_most_loyal", "total_votes", "votes_with_party_pct");
-//            }
-//
-//            if (window.location.pathname == "/Resources/HTML/senate-attendance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html") {
-//                this.createTable(leastEngagedArray, "senate_least_engaged", 'missed_votes', 'missed_votes_pct');
-//                this.createTable(mostEngagedArray, "senate_most_engaged", 'missed_votes', 'missed_votes_pct');
-//            }           
-            
-//            
-//            
-//            //Independent to URL 
-//
-//            document.getElementById('total_Republicans').innerHTML = statistics["Number of Republicans"];
-//            document.getElementById('total_Democrats').innerHTML = statistics["Number of Democrats"];
-//            document.getElementById('total_Indepedents').innerHTML = statistics["Number of Independents"];
-//            document.getElementById('total_number_candidates').innerHTML = statistics["Total Senate Number"];
-//
-//            //Attendance Table
-//
-//            if ((window.location.pathname == "/Resources/HTML/senate-attendance.html" || window.location.pathname == "/Resources/HTML/house-attendance.html")) {
-//                document.getElementById('aver_rep_missedper').innerHTML = Math.floor(statistics['Average Republican Missed Votes Perc']) + "%";
-//                document.getElementById('aver_dem_missedper').innerHTML = Math.floor(statistics["Average Democratic Missed Votes Perc"]) + "%";
-//                document.getElementById('aver_ind_missedper').innerHTML = Math.floor(statistics["Average Inde Missed Votes Perc"]) + "%";
-//                document.getElementById('aver_of_aver_missedper').innerHTML = Math.floor(statistics["Aver of Aver Missed Votes Perc"]) + "%";
-//            }
-//
-//
-//            //Loyalty Table
-//
-//            if ((window.location.pathname == "/Resources/HTML/senate-loyalty.html" || window.location.pathname == "/Resources/HTML/house-loyalty.html")) {
-//                document.getElementById('aver_rep_votWParty').innerHTML = Math.floor(statistics["Average Republican Voted wParty Perc"]) + "%";
-//                document.getElementById('aver_dem_votWParty').innerHTML = Math.floor(statistics["Average Democratic Voted wParty Perc"]) + "%";
-//                document.getElementById('aver_ind_votWParty').innerHTML = Math.floor(statistics["Average Independent Voted wParty Perc"]) + "%";
-//                document.getElementById('aver_of_aver_votWParty').innerHTML = Math.floor(statistics["Average of averages Voted wParty Perc"]) + "%";
-//            }
-
-            },
         
         totalNumber: function(par) {
                 let arr = [];

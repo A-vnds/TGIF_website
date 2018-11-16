@@ -136,7 +136,7 @@
                 </thead>
                 <tbody id='senate_least_loyal'>
                     <tr v-for="senator in leastLoyalArray">
-                        <td>{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</td>
+                        <td><a v-bind:href="senator.url" >{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</a></td>
                         <td>{{senator.total_votes}}</td>
                         <td>{{senator.votes_with_party_pct}} % </td> 
                     </tr>
@@ -157,7 +157,7 @@
                 </thead>
                 <tbody id='senate_most_loyal'>
                    <tr v-for="senator in mostLoyalArray">
-                        <td>{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</td>
+                        <td><a v-bind:href="senator.url" >{{senator.first_name}} {{senator.middle_name}} {{senator.last_name}}</a></td>
                         <td>{{senator.total_votes}}</td>
                         <td>{{senator.votes_with_party_pct}} % </td> 
                     </tr>

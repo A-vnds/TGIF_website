@@ -361,3 +361,8 @@ footer {
 .separation-line {
     border-bottom: 1.5px solid #555;
 }
+
+
+.dropdown-menu {
+    padding: 0;
+}

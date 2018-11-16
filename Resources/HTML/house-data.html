@@ -110,7 +110,7 @@
         </thead>
         <tbody id='senate_table'>
             <tr v-for="value in senators">
-                <td>{{value.first_name}} {{value.middle_name}} {{value.last_name}}</td>
+                <td><a v-bind:href="value.url" >{{value.first_name}} {{value.middle_name}} {{value.last_name}}</a></td>
                 <td>{{value.party}}</td>
                 <td>{{value.state}}</td>
                 <td>{{value.seniority}}</td>
