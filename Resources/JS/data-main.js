@@ -144,14 +144,8 @@ var app = new Vue({
         senateURL: "https://api.propublica.org/congress/v1/113/senate/members.json",
         houseURL: "https://api.propublica.org/congress/v1/113/house/members.json",
         states: [],
-
-
-        //        partySelector: document.getElementById("selectParty"),
-        //        stateSelector: document.getElementById("selectState"),
-        //        tableResults: document.getElementById('senate_table'),
-        //        checkDem: document.getElementById('checkDem'),
-        //        checkRep: document.getElementById('checkRep'),
-        //        checkInd: document.getElementById('checkInd'),
+        hide_loader: false,
+        hide_table: true,
 
     },
     created: function () {
@@ -177,6 +171,8 @@ var app = new Vue({
                     data = json;
                     this.members = data.results[0].members;
                     this.senators = data.results[0].members;
+                    this.hide_loader = true;
+                    this.hide_table = false;
                     this.removeDuplicates();
                 })
                 .catch(error => error)
@@ -266,3 +262,7 @@ var app = new Vue({
         },
     }
 });
+
+
+
+
