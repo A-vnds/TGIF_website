@@ -1,17 +1,17 @@
 //const members = data.results[0].members
 //console.log(data);
 
-const senateURL = "https://api.propublica.org/congress/v1/113/senate/members.json";
-const houseURL = "https://api.propublica.org/congress/v1/113/house/members.json";
+//const senateURL = "https://api.propublica.org/congress/v1/113/senate/members.json";
+//const houseURL = "https://api.propublica.org/congress/v1/113/house/members.json";
 
-const partySelector = document.getElementById("selectParty");
-const stateSelector = document.getElementById('selectState');
+//const partySelector = document.getElementById("selectParty");
+//const stateSelector = document.getElementById('selectState');
 
-let tableResults = document.getElementById('senate_table');
+//let tableResults = document.getElementById('senate_table');
 
-const checkDem = document.getElementById('checkDem');
-const checkRep = document.getElementById('checkRep');
-const checkInd = document.getElementById('checkInd');
+//const checkDem = document.getElementById('checkDem');
+//const checkRep = document.getElementById('checkRep');
+//const checkInd = document.getElementById('checkInd');
 
 
 //function getDATA(url) {
@@ -141,15 +141,12 @@ var app = new Vue({
     data: {
         senators: [],
         members: [],
-        filteredArray: [],
         senateURL: "https://api.propublica.org/congress/v1/113/senate/members.json",
         houseURL: "https://api.propublica.org/congress/v1/113/house/members.json",
-        partySelector: document.getElementById("selectParty"),
-        stateSelector: document.getElementById('selectState'),
-        tableResults: document.getElementById('senate_table'),
-        checkDem: document.getElementById('checkDem'),
-        checkRep: document.getElementById('checkRep'),
-        checkInd: document.getElementById('checkInd'),
+        states: [],
+        hide_loader: false,
+        hide_table: true,
+
     },
     created: function () {
         if (window.location.pathname == "/Resources/HTML/senate-data.html") {
@@ -159,7 +156,9 @@ var app = new Vue({
             this.getData(this.houseURL);
         };
     },
+
     methods: {
+
         getData: function (url) {
             fetch(url, {
                     method: "GET",
@@ -170,41 +169,84 @@ var app = new Vue({
                 .then(response => response.json()) // parses response to JSON
                 .then(json => {
                     data = json;
-                    app.members = data.results[0].members;
-                    app.senators = data.results[0].members;
-                    app.partySelector.addEventListener("change", app.zeroMatches);
-                    app.stateSelector.addEventListener("change", app.zeroMatches);
+                    this.members = data.results[0].members;
+                    this.senators = data.results[0].members;
+                    this.hide_loader = true;
+                    this.hide_table = false;
+                    this.removeDuplicates();
                 })
                 .catch(error => error)
         },
+
+
+
+        removeDuplicates: function () {
+            let stateListArray = [];
+
+            for (let i = 0; i < this.members.length; i++) {
+                if (stateListArray.indexOf(this.members[i].state) == -1) {
+                    stateListArray.push(this.members[i].state);
+                }
+            }
+            this.states = stateListArray;
+        },
+
+
         zeroMatches: function () {
-
-
             this.filterArray();
+
             if (this.senators.length == 0) {
                 alert("There are no matches for this values, the table will be reset");
                 this.resetTableArr();
             }
         },
+
         resetTableArr: function () {
-            this.stateSelector.value = 'All'
-            this.checkDem.checked = true;
-            this.checkRep.checked = true;
-            this.checkInd.checked = true;
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+            stateSelector.value = 'All'
+            checkDem.checked = true;
+            checkRep.checked = true;
+            checkInd.checked = true;
             this.filterArray();
         },
+
         caseReset: function () {
-            if ((this.stateSelector.value == 'All' && (this.checkDem.checked == false) && (this.checkRep.checked == false) && (this.checkInd.checked == false))) {
-                this.resetTableArr();
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+
+            if ((stateSelector.value == 'All' && (checkDem.checked == false) && (checkRep.checked == false) && (checkInd.checked == false))) {
+                this.resetTableArr()
+                console.log('hi');
             } else {
                 this.filterArray();
             }
+            console.log('hi');
+
         },
+
+
         filterArray: function () {
+
+            checkDem = document.getElementById('checkDem');
+            checkRep = document.getElementById('checkRep');
+            checkInd = document.getElementById('checkInd');
+            stateSelector = document.getElementById("selectState");
+
+
             let filteredArray = [];
 
-            for (let i = 0; i < this.members.length; i++) {
 
+            for (let i = 0; i < this.members.length; i++) {
+            
                 if (this.members[i].state == stateSelector.value || stateSelector.value == 'All') {
 
                     if ((this.members[i].party == 'D') && (checkDem.checked == true)) {
@@ -216,10 +258,26 @@ var app = new Vue({
                     }
                 }
             }
-
             this.senators = filteredArray;
-        }
-
-
-    },
+        },
+    }
 });
+
+
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+        document.getElementById("myScrollBtn").style.display = "block";
+    } else {
+        document.getElementById("myScrollBtn").style.display = "none";
+    }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+}

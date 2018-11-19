@@ -2,11 +2,13 @@
 <html lang="en">
 
 <head>
-<link rel="stylesheet" type="text/css" href='/Resources/CSS/style.css'>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>  
+
+<link rel="stylesheet" type="text/css" href='/Resources/CSS/style.css'>
+
 </head>
 
 
@@ -46,7 +48,7 @@
               Attendance
             </a>
             <div class="dropdown-menu sm-menu">
-              <a class="dropdown-item" href="senate-attedance.html">US Senate</a>
+              <a class="dropdown-item" href="senate-attendance.html">US Senate</a>
               <a class="dropdown-item" href="house-attendance.html">US House of Representatives</a>
             </div>
           </li>
@@ -73,103 +75,70 @@
     </p>
   
 </div>              
-                   
-       
+   
+<button onclick="topFunction()" id="myScrollBtn" title="Go to top">Top</button>
+
+                                      
+      
+<div id="vue-app">    
 <div class='ss-row table-filters'>
+   
+   
+   
+
+   
     
     <div class='party-filter' id="selectParty">
         <label>Filter by Party:</label>
-        <input type="checkbox" value="D" id='checkDem' checked> Democratic
-        <input type="checkbox" value="R" id='checkRep' checked> Republican
-        <input type="checkbox" value="I" id='checkInd' checked> Independent
+        <input type="checkbox" value="D" id='checkDem' checked v-on:click='zeroMatches'> Democratic
+        <input type="checkbox" value="R" id='checkRep' checked v-on:click='zeroMatches'> Republican
+        <input type="checkbox" value="I" id='checkInd' checked v-on:click='zeroMatches'> Independent
     </div>
     
     <div class='state-filter'> <label>Filter by State:</label>
-    <select id="selectState">
-            <option value="All" selected>All</option>
-            <option value="AK">AK</option>
-            <option value="AL">AL</option>
-            <option value="AR">AR</option>
-            <option value="AZ">AZ</option>
-            <option value="CA">CA</option>
-            <option value="CO">CO</option>
-            <option value="CT">CT</option>
-            <option value="DE">DE</option>
-            <option value="FL">FL</option>
-            <option value="GA">GA</option>
-            <option value="HI">HI</option>
-            <option value="IA">IA</option>
-            <option value="ID">ID</option>
-            <option value="IL">IL</option>
-            <option value="IN">IN</option>
-            <option value="KS">KS</option>
-            <option value="KY">KY</option>
-            <option value="LA">LA</option>
-            <option value="MA">MA</option>
-            <option value="MD">MD</option>
-            <option value="ME">ME</option>
-            <option value="MI">MI</option>
-            <option value="MN">MN</option>
-            <option value="MO">MO</option>
-            <option value="MS">MS</option>
-            <option value="MT">MT</option>
-            <option value="NC">NC</option>
-            <option value="ND">ND</option>
-            <option value="NE">NE</option>
-            <option value="NH">NH</option>
-            <option value="NJ">NJ</option>
-            <option value="NM">NM</option>
-            <option value="NV">NV</option>
-            <option value="NY">NY</option>
-            <option value="OH">OH</option>
-            <option value="OK">OK</option>
-            <option value="OR">OR</option>
-            <option value="PA">PA</option>
-            <option value="RI">RI</option>
-            <option value="SC">SC</option>
-            <option value="SD">SD</option>
-            <option value="TN">TN</option>
-            <option value="TX">TX</option>
-            <option value="UT">UT</option>
-            <option value="VA">VA</option>
-            <option value="VT">VT</option>
-            <option value="WA">WA</option>
-            <option value="WI">WI</option>
-            <option value="WV">WV</option>
-            <option value="WY">WY</option>
-        </select>
+    <select id="selectState" @change='zeroMatches'>
+            <option value="All">All</option>
+            <option v-for='state in states' :value="state" >{{state}}</option>
+           
+    </select>
 </div>
    
 </div>                        
-                                           
-                                                             
-                                                                                                 
-<div class= 'ss-row table-container'>
 
-<table>
    
-<thead>
-   <tr>
-       <th>Name</th>
-       <th>Party</th>    
-       <th>State</th>    
-       <th>Years In Office</th>    
-       <th>Voted with Party %</th>
-    </tr>
-</thead>
-    
-<tbody id='senate_table'>
-   
-    
-</tbody>
-    
-</table>
+    <div class="spinner" id="loader" v-bind:class="{ hide_loader: hide_loader}"></div>
+                 
 
+<div class='ss-row table-container'>
+
+   
+    <table v-bind:class="{hide_table: hide_table}">
+ 
+        <thead>
+            <tr>
+                <th class="column1">Name</th>
+                <th class="column2">Party</th>
+                <th class="column3">State</th>
+                <th class="column4">Years In Office</th>
+                <th class="column5">Voted with Party %</th>
+            </tr>
+        </thead>
+        <tbody id='senate_table'>
+            <tr v-for="value in senators">
+                <td><a v-bind:href="value.url" >{{value.first_name}} {{value.middle_name}} {{value.last_name}}</a></td>
+                <td>{{value.party}}</td>
+                <td>{{value.state}}</td>
+                <td>{{value.seniority}}</td>
+                <td>{{value.votes_with_party_pct}} % </td> 
+            </tr>
+        </tbody>
+    </table> 
+   </div> 
 </div>
+
          
            
 <footer>
-  
    <div class='ss-row footer'>
           <p>Copyright &copy; 2016 by TGIF. All rights reserved.</p> <img src="/Resources/Images/small%20logo.png" alt='small logo'>
        
@@ -177,13 +146,17 @@
  
     
     
-</footer>
+</footer> 
 
-<!--<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>-->
+                  
+                                                      
+<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>    
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+<script src="https://unpkg.com/@saeris/vue-spinners"></script>
 
-<!--<script src='/External/house113.js'></script>-->
 <script src='/Resources/JS/data-main.js'></script>
-<script src="https://unpkg.com/ionicons@4.4.6/dist/ionicons.js"></script>
+
+   
 </body>
                                                
 </html>
